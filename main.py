@@ -11,6 +11,14 @@
 
 import random
 
+def check_is_digit(number):
+    while not number.isdigit():
+        print("ВВОДИТЕ ТОЛЬКО ЦЕЛЫЕ ЧИСЛА!")
+        number = input("Угадай число из диапазона от 1 до 100\nВводить сюда:>")
+    number = int(number)
+    return number
+
+
 print("Привет, это игра Угадай Число ")
 name_player = input("Как тебя зовут?\nВводить сюда:>")
 
@@ -33,23 +41,14 @@ while game:
     attempts = 0  # количество попыток
     while guess_number != player_number:
         player_number = input("Угадай число из диапазона от 1 до 100\nВводить сюда:>")
-
-        while not player_number.isdigit():
-            print("ВВОДИТЕ ТОЛЬКО ЦЕЛЫЕ ЧИСЛА!")
-            player_number = input("Угадай число из диапазона от 1 до 100\nВводить сюда:>")
-        player_number = int(player_number)
-
+        player_number = check_is_digit(player_number)
         attempts += 1
 
         # проверка на то ввел ли игрок число в диапазоне от 1 до MAXIMUM_NUMBER
         while player_number < 1 or player_number > 100:
             print("число", player_number, "не в диапазоне от 1 до 100")
             player_number = input("Угадай число из диапазона от 1 до 100\nВводить сюда:>")
-
-            while not player_number.isdigit():
-                print("ВВОДИТЕ ТОЛЬКО ЦЕЛЫЕ ЧИСЛА!")
-                player_number = input("Угадай число из диапазона от 1 до 100\nВводить сюда:>")
-            player_number = int(player_number)
+            player_number = check_is_digit(player_number)
 
         # проверка на то угадал ли игрок число, сработает если не угадал
         if guess_number != player_number:
